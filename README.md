@@ -1,8 +1,8 @@
 # banner
 
 > the thing at the top of my profile is one svg file. no javascript, no gifs, no video.
-> a reaper flies overwatch, two drones get shot down, and the dot of the "i" in my name
-> is the missile that gets one of them.
+> a reaper flies overwatch, and the dot of the "i" in my name lifts off the letter and
+> shoots down a drone.
 
 ![banner](assets/header.svg)
 
@@ -13,23 +13,23 @@ you cannot ship javascript. you cannot load anything external. whatever you want
 banner to do has to already be inside one file, because github serves it through an
 `<img>` tag and an svg loaded that way is sealed shut. no scripts run in it, ever.
 
-so everything here is smil and css inside a single 49kb file.
+so everything here is smil and css inside a single 44kb file.
 
 ## how it works
 
-one clock. every animation in the file is `dur="18s"`, and each thing that happens is
-written as a fraction of that: the first hellfire leaves at 0.438, the beam locks at
-0.576, the f-22 fires at 0.615. change the loop length and the whole story stays in sync
-because nothing has its own timeline.
+one clock. every animation in the file is `dur="14s"`, and each thing that happens is
+written as a fraction of that: the beam locks at 0.262, the "i" fires at 0.276, the first
+hellfire leaves the pylon at 0.439. change the loop length and the whole story stays in
+sync because nothing has its own timeline.
 
-what happens in 18 seconds:
+what happens in 14 seconds:
 
 - an mq-9 reaper crosses the top with a searchlight sweeping under it
-- two hellfires come off its pylons and delete a whole letter each, then the letters come back
-- fpv quads patrol above the name, punching out and hovering
-- the light goes red when a drone is actually inside the cone
-- an f-22 comes in, fires from standoff, kills one, and breaks away upward
-- the dot of the "i" lifts off, trails smoke, and kills the other one
+- the light goes red when a drone is actually inside the cone, about four seconds in
+- the dot of the "i" lifts off, trails smoke, and kills that drone
+- two hellfires come off the reaper's pylons and delete a whole letter each, then the
+  letters come back
+- the other drone patrols above the name the whole loop and gets away with it
 - a price tape draws itself along the floor, green up, red down, with volume blocks
 
 the light going red is not on a timer. i solved for when a drone is geometrically inside
@@ -39,24 +39,22 @@ the cone for 0.08 seconds, which is why it looked like it never got detected.
 
 ## what happened
 
-nine things move on a 1500x500 canvas. "make sure nothing hits each other" is not
+six things move on a 1500x500 canvas. "make sure nothing hits each other" is not
 something you can check by watching it, so `audit.py` reads the finished svg, rebuilds
 every object's real path, pace and visibility window, and measures every pair across
 6000 samples of the loop.
 
 ```
-moving objects: missile1, missile2, reaper1, drone1, drone2, jet1, missile3, missile4, drone3
-drone2   /missile3  gap=  -18.0px  at t=0.637   <- on purpose
-jet1     /missile3  gap=  -18.0px  at t=0.610   <- on purpose
-drone1   /missile4  gap=  -18.0px  at t=0.737   <- on purpose
-missile2 /drone2    gap=   29.0px  at t=0.564
+moving objects: missile1, missile2, reaper1, drone1, drone2, missile3
+drone1   /missile3  gap=  -18.0px  at t=0.316  <- on purpose
+missile2 /drone2    gap=   10.6px  at t=0.561
 reaper1  /drone1    gap=   36.0px  at t=0.287
 
 accidental collisions: 0
 ```
 
-the closest unintended pass in the whole loop is 29px, between a falling hellfire and a
-drone. the three overlaps are the three kills.
+the closest unintended pass in the whole loop is 10px, a falling hellfire going past the
+surviving drone. the one overlap is the kill.
 
 the bugs were the actual work:
 
@@ -86,14 +84,23 @@ static and only the tittle of the "i" still needs a mask.
 javascript and no memory, so it cannot know what time it is or where it left off. chrome
 drops the image when it leaves the viewport and re-decodes it on the way back, from zero.
 that is unfixable from inside the file, so the loop got shorter instead: 32 seconds down
-to 18, so you see the whole thing before you scroll past.
+to 14, so you see the whole thing before you scroll past.
 
 **"crazier" flying looked random, not alive.** first attempt was long erratic paths and
 it read as a screensaver. what fixed it was giving each drone a job: one patrols the left
 half, one the right, they dip into the pockets either side of the name, and the character
 comes from the pace rather than the path. hovers at 20px/s, dashes at 250px/s, one flip
-each. because they own separate halves, they also cannot hit each other by accident until
-the point where i want them to.
+each. because they own separate halves, they also cannot drift into each other, which is
+the cheapest way to make a collision impossible: don't put them in the same place.
+
+**i over-wrote it and had to cut half of it.** the loop grew to eight beats: reaper,
+two letter strikes, three drones, an f-22 doing a standoff kill, the "i" launching, plus
+a chart with callouts. eighteen seconds of short film on top of a page nobody looks at
+for more than two. worse, the best idea in it, the dot of the "i" coming off the letter,
+happened at second 13 of 18, and because the animation restarts every time you scroll
+past it, most people would never have seen it. so the f-22 and a drone came out and the
+launch moved to second 4. the strongest thing you have should not be the last thing you
+show.
 
 ## what i learned
 
@@ -107,6 +114,8 @@ the point where i want them to.
 - a cache you did not know about will cost you an hour of "it didn't change"
 - read the constraint first. half of what i tried failed because an svg in an `<img>` is
   a much smaller box than an svg in a page
+- put the best beat first. if a viewer gives you two seconds, spending them on setup is
+  the same as having no best beat at all
 
 ## run
 
@@ -122,7 +131,7 @@ external requests.
 ## status
 
 - ✅ live on my profile
-- ✅ 18s loop, 49kb, 168 animations, no javascript, no filters
+- ✅ 14s loop, 44kb, 151 animations, no javascript, no filters
 - ✅ 0 accidental collisions, checked every build
 - ⬜ restarts when you scroll past it, and always will
 

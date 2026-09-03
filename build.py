@@ -20,7 +20,7 @@ A_PTS=[(-110,292),(90,250),(185,155),(360,140),(520,162),(660,140),(700,162),(56
        (700,140),(620,162),(480,158),(360,140),(300,162),(430,162),(600,152),(750,140)]
 B_PTS=[(1610,292),(1410,250),(1315,155),(1140,140),(980,162),(840,140),(800,162),(940,162),
        (1100,150),(1250,162),(1360,162),(1408,292),(1300,162),(1170,162),(1030,140),(900,162),
-       (800,140),(880,162),(1020,158),(1140,140),(1200,162),(1070,162),(900,152),(750,140)]
+       (800,140),(880,162),(1020,158),(1140,140),(1200,162),(1070,162),(900,152),(750,142),(600,158),(430,140),(300,160),(180,286),(120,292),(320,150),(560,162),(820,140),(1120,158),(1360,150),(1470,292),(1610,292)]
 
 
 
@@ -42,7 +42,7 @@ def pace(seed, tb=0.82):
     return ";".join(f"{v:.4f}" for v in kp), ";".join(f"{v:.4f}" for v in kt)
 
 KPA,KTA=pace(7)
-KPB,KTB=pace(23)
+KPB,KTB=pace(23, 1.0)
 
 PA=smooth(A_PTS)
 PB=smooth(B_PTS)
@@ -52,8 +52,8 @@ def debris(bx,by,t0,shards):
     for i,(dx,dy) in enumerate(shards):
         a=t0+i*0.001
         out.append(f'''    <rect x="{bx}" y="{by}" width="7" height="7" fill="currentColor" opacity="0">
-      <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.85;0;0" keyTimes="0;{a:.4f};{a+0.004:.4f};{a+0.03:.4f};1"/>
-      <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;{dx} {dy};{dx} {dy}" keyTimes="0;{a:.4f};{a+0.03:.4f};1"/>
+      <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.85;0;0" keyTimes="0;{a:.4f};{a+0.004:.4f};{a+0.03:.4f};1"/>
+      <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;{dx} {dy};{dx} {dy}" keyTimes="0;{a:.4f};{a+0.03:.4f};1"/>
     </rect>''')
     return "\n".join(out)
 
@@ -61,22 +61,22 @@ T1,T2,TB=0.462,0.569,0.820
 
 def strike(x,y,t):
     return f'''  <circle cx="{x}" cy="{y}" r="0" fill="currentColor" opacity="0">
-    <animate attributeName="r" dur="18s" repeatCount="indefinite" values="0;0;30;46;46" keyTimes="0;{t:.4f};{t+0.005:.4f};{t+0.020:.4f};1"/>
-    <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.95;0;0" keyTimes="0;{t-0.0005:.4f};{t+0.003:.4f};{t+0.020:.4f};1"/>
+    <animate attributeName="r" dur="14s" repeatCount="indefinite" values="0;0;30;46;46" keyTimes="0;{t:.4f};{t+0.005:.4f};{t+0.020:.4f};1"/>
+    <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.95;0;0" keyTimes="0;{t-0.0005:.4f};{t+0.003:.4f};{t+0.020:.4f};1"/>
   </circle>
   <circle cx="{x}" cy="{y}" r="0" fill="none" stroke="currentColor" stroke-width="3" opacity="0">
-    <animate attributeName="r" dur="18s" repeatCount="indefinite" values="0;6;64;64" keyTimes="0;{t:.4f};{t+0.032:.4f};1"/>
-    <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.75;0;0" keyTimes="0;{t:.4f};{t+0.005:.4f};{t+0.032:.4f};1"/>
+    <animate attributeName="r" dur="14s" repeatCount="indefinite" values="0;6;64;64" keyTimes="0;{t:.4f};{t+0.032:.4f};1"/>
+    <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.75;0;0" keyTimes="0;{t:.4f};{t+0.005:.4f};{t+0.032:.4f};1"/>
   </circle>
   <circle cx="{x-14}" cy="{y-10}" r="0" fill="currentColor" opacity="0">
-    <animate attributeName="r" dur="18s" repeatCount="indefinite" values="0;8;26;26" keyTimes="0;{t+0.004:.4f};{t+0.060:.4f};1"/>
-    <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.2;0;0" keyTimes="0;{t+0.004:.4f};{t+0.012:.4f};{t+0.060:.4f};1"/>
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;-6 -34;-6 -34" keyTimes="0;{t+0.004:.4f};{t+0.060:.4f};1"/>
+    <animate attributeName="r" dur="14s" repeatCount="indefinite" values="0;8;26;26" keyTimes="0;{t+0.004:.4f};{t+0.060:.4f};1"/>
+    <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.2;0;0" keyTimes="0;{t+0.004:.4f};{t+0.012:.4f};{t+0.060:.4f};1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;-6 -34;-6 -34" keyTimes="0;{t+0.004:.4f};{t+0.060:.4f};1"/>
   </circle>
   <circle cx="{x+16}" cy="{y-4}" r="0" fill="currentColor" opacity="0">
-    <animate attributeName="r" dur="18s" repeatCount="indefinite" values="0;7;23;23" keyTimes="0;{t+0.008:.4f};{t+0.064:.4f};1"/>
-    <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.18;0;0" keyTimes="0;{t+0.008:.4f};{t+0.016:.4f};{t+0.064:.4f};1"/>
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;8 -40;8 -40" keyTimes="0;{t+0.008:.4f};{t+0.064:.4f};1"/>
+    <animate attributeName="r" dur="14s" repeatCount="indefinite" values="0;7;23;23" keyTimes="0;{t+0.008:.4f};{t+0.064:.4f};1"/>
+    <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.18;0;0" keyTimes="0;{t+0.008:.4f};{t+0.016:.4f};{t+0.064:.4f};1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;8 -40;8 -40" keyTimes="0;{t+0.008:.4f};{t+0.064:.4f};1"/>
   </circle>'''
 
 
@@ -86,23 +86,23 @@ ex=[]
 for i,(dx,dy) in enumerate(shard_dirs):
     a=TB+i*0.0006
     ex.append(f'''  <rect x="746" y="136" width="8" height="8" fill="currentColor" opacity="0">
-    <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;{a:.4f};{a+0.004:.4f};{a+0.034:.4f};{a+0.050:.4f};1"/>
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;{dx} {dy};{dx} {dy+34};{dx} {dy+34}" keyTimes="0;{a:.4f};{a+0.026:.4f};{a+0.050:.4f};1"/>
+    <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;{a:.4f};{a+0.004:.4f};{a+0.034:.4f};{a+0.050:.4f};1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;{dx} {dy};{dx} {dy+34};{dx} {dy+34}" keyTimes="0;{a:.4f};{a+0.026:.4f};{a+0.050:.4f};1"/>
   </rect>''')
 fall=[]
 for i,(dx,dy) in enumerate([(-40,150),(30,170),(-8,190)]):
     a=TB+0.004+i*0.002
     fall.append(f'''  <rect x="747" y="137" width="6" height="6" fill="currentColor" opacity="0">
-    <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.9;0;0" keyTimes="0;{a:.4f};{a+0.006:.4f};{a+0.072:.4f};1"/>
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;{dx} {dy};{dx} {dy}" keyTimes="0;{a:.4f};{a+0.072:.4f};1"/>
+    <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.9;0;0" keyTimes="0;{a:.4f};{a+0.006:.4f};{a+0.072:.4f};1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;{dx} {dy};{dx} {dy}" keyTimes="0;{a:.4f};{a+0.072:.4f};1"/>
   </rect>''')
 smoke=[]
 for i,(cx,cy,r1,r2,dy) in enumerate([(730,130,12,44,-40),(772,140,10,38,-52),(748,154,11,40,-30)]):
     a=TB+0.006+i*0.003
     smoke.append(f'''  <circle cx="{cx}" cy="{cy}" r="0" fill="currentColor" opacity="0">
-    <animate attributeName="r" dur="18s" repeatCount="indefinite" values="0;{r1};{r2};{r2}" keyTimes="0;{a:.4f};{a+0.085:.4f};1"/>
-    <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.22;0;0" keyTimes="0;{a:.4f};{a+0.012:.4f};{a+0.085:.4f};1"/>
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;0 {dy};0 {dy}" keyTimes="0;{a:.4f};{a+0.085:.4f};1"/>
+    <animate attributeName="r" dur="14s" repeatCount="indefinite" values="0;{r1};{r2};{r2}" keyTimes="0;{a:.4f};{a+0.085:.4f};1"/>
+    <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.22;0;0" keyTimes="0;{a:.4f};{a+0.012:.4f};{a+0.085:.4f};1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;0 {dy};0 {dy}" keyTimes="0;{a:.4f};{a+0.085:.4f};1"/>
   </circle>''')
 
 FPV_A_BODY='''<g class="wob" fill="currentColor" stroke="currentColor">
@@ -139,17 +139,17 @@ REAPER='''<g class="bobslow" fill="currentColor" stroke="none">
       <ellipse class="prop-v" cx="-81" cy="0" rx="2.6" ry="17"/>
       <rect x="-13" y="8" width="4" height="9" rx="1"/><rect x="13" y="8" width="4" height="9" rx="1"/>
       <g opacity="1"><rect x="-21" y="16" width="19" height="5.5" rx="2.75"/><path d="M-2 16L4 18.75L-2 21.5Z"/><path d="M-21 16L-25 12L-22.5 16ZM-21 21.5L-25 25.5L-22.5 21.5Z"/>
-        <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.4380;0.4390;1"/></g>
+        <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.4380;0.4390;1"/></g>
       <g opacity="1"><rect x="5" y="16" width="19" height="5.5" rx="2.75"/><path d="M24 16L30 18.75L24 21.5Z"/><path d="M5 16L1 12L3.5 16ZM5 21.5L1 25.5L3.5 21.5Z"/>
-        <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.5435;0.5445;1"/></g>
+        <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.5435;0.5445;1"/></g>
     </g>
-    <g opacity=".12" fill="#ffffff"><animate attributeName="fill" dur="18s" repeatCount="indefinite" values="#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff" keyTimes="0;0.2820;0.2850;0.3080;0.3120;0.5760;0.5800;0.6400;0.6460;0.7370;0.7400;0.7760;0.7820;1"/><animate attributeName="opacity" dur="18s" repeatCount="indefinite" values=".12;.12;.26;.12;.26;.12;.28;.14;.28;.14;.28;.12;.12;.28;.14;.28;.14;.28;.12;.12" keyTimes="0;0.2820;0.2900;0.2960;0.3020;0.3120;0.5800;0.5900;0.6000;0.6100;0.6250;0.6440;0.7370;0.7450;0.7530;0.7610;0.7690;0.7730;0.7820;1"/><animateTransform attributeName="transform" type="rotate" dur="9s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><path d="M44 13L15 224L73 224Z"/></g>
-    <g opacity=".3" fill="none" stroke="#ffffff" stroke-width="1.6"><animate attributeName="stroke" dur="18s" repeatCount="indefinite" values="#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff" keyTimes="0;0.2820;0.2850;0.3080;0.3120;0.5760;0.5800;0.6400;0.6460;0.7370;0.7400;0.7760;0.7820;1"/><animateTransform attributeName="transform" type="rotate" dur="9s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><ellipse cx="44" cy="224" rx="29" ry="5.5"/></g>'''
+    <g opacity=".12" fill="#ffffff"><animate attributeName="fill" dur="14s" repeatCount="indefinite" values="#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff" keyTimes="0;0.2620;0.2680;0.3250;0.3320;0.5760;0.5800;0.6100;0.6180;1"/><animate attributeName="opacity" dur="14s" repeatCount="indefinite" values=".12;.12;.28;.14;.28;.14;.28;.12;.12;.26;.13;.26;.12;.12" keyTimes="0;0.2620;0.2700;0.2780;0.2860;0.2940;0.3020;0.3320;0.5760;0.5840;0.5920;0.6000;0.6180;1"/><animateTransform attributeName="transform" type="rotate" dur="7s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><path d="M44 13L15 224L73 224Z"/></g>
+    <g opacity=".3" fill="none" stroke="#ffffff" stroke-width="1.6"><animate attributeName="stroke" dur="14s" repeatCount="indefinite" values="#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff" keyTimes="0;0.2620;0.2680;0.3250;0.3320;0.5760;0.5800;0.6100;0.6180;1"/><animateTransform attributeName="transform" type="rotate" dur="7s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><ellipse cx="44" cy="224" rx="29" ry="5.5"/></g>'''
 
 def missile(x0,y0,cx_,cy_,x1,y1,t0,t1):
     return f'''<g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;{t0-0.0005:.4f};{t0:.4f};{t1-0.001:.4f};{t1:.4f};1"/>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;{t0:.4f};{t1:.4f};1" path="M{x0} {y0}Q{cx_} {cy_} {x1} {y1}"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;{t0-0.0005:.4f};{t0:.4f};{t1-0.001:.4f};{t1:.4f};1"/>
+  <animateMotion dur="14s" repeatCount="indefinite" calcMode="linear" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;{t0:.4f};{t1:.4f};1" path="M{x0} {y0}Q{cx_} {cy_} {x1} {y1}"/>
   <g fill="currentColor"><rect x="-24" y="-1.6" width="16" height="3.2" rx="1.6" opacity=".35"/><rect x="-13" y="-3.5" width="26" height="7" rx="3.5"/><path d="M13 -3.5L21 0L13 3.5Z"/><path d="M-13 -3.5L-19 -9.5L-15 -3.5ZM-13 3.5L-19 9.5L-15 3.5Z"/></g>
 </g>'''
 
@@ -169,7 +169,7 @@ _segs=[]; _bars=[]; _run=0.0
 for i,l in enumerate(_L):
     t0=DRAW*_run/_TOT; _run+=l; t1=DRAW*_run/_TOT
     up=_pts[i+1][1] < _pts[i][1]; col=UP if up else DOWN
-    _segs.append(f'<path d="M{_pts[i][0]} {_pts[i][1]}L{_pts[i+1][0]} {_pts[i+1][1]}" fill="none" stroke="{col}" stroke-width="2.6" stroke-linecap="butt" opacity=".6" stroke-dasharray="{l+3:.0f}" stroke-dashoffset="{l+3:.0f}"><animate attributeName="stroke-dashoffset" dur="18s" repeatCount="indefinite" values="{l+3:.0f};{l+3:.0f};0;0;{l+3:.0f}" keyTimes="0;{t0:.4f};{t1:.4f};0.950;1"/></path>')
+    _segs.append(f'<path d="M{_pts[i][0]} {_pts[i][1]}L{_pts[i+1][0]} {_pts[i+1][1]}" fill="none" stroke="{col}" stroke-width="2.6" stroke-linecap="butt" opacity=".6" stroke-dasharray="{l+3:.0f}" stroke-dashoffset="{l+3:.0f}"><animate attributeName="stroke-dashoffset" dur="14s" repeatCount="indefinite" values="{l+3:.0f};{l+3:.0f};0;0;{l+3:.0f}" keyTimes="0;{t0:.4f};{t1:.4f};0.950;1"/></path>')
     _sub=[]
     _move=abs(_pts[i+1][1]-_pts[i][1])
     for k in range(5):
@@ -178,9 +178,9 @@ for i,l in enumerate(_L):
         h=5+min(24, _move*0.75)*(0.45+0.55*((i*7+k*13)%10)/9)
         _sub.append(f'<rect x="{x-2.5:.0f}" y="{(470-h) if up else 472:.0f}" width="5" height="{h:.0f}" rx="1"/>')
     if _sub:
-        _bars.append(f'<g fill="{col}" opacity="0">{"".join(_sub)}<animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.42;.42;0" keyTimes="0;{t0:.4f};{min(0.999,t0+0.012):.4f};0.950;1"/></g>')
+        _bars.append(f'<g fill="{col}" opacity="0">{"".join(_sub)}<animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.42;.42;0" keyTimes="0;{t0:.4f};{min(0.999,t0+0.012):.4f};0.950;1"/></g>')
 _full="M"+" L".join(f"{x} {y}" for x,y in _pts)
-_dot=f'<circle r="3.4" fill="currentColor" opacity="0"><animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;.75;.75;0;0" keyTimes="0;0.02;{DRAW:.2f};{DRAW+0.02:.2f};1"/><animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;{DRAW:.2f};1" path="{_full}"/></circle>'
+_dot=f'<circle r="3.4" fill="currentColor" opacity="0"><animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;.75;.75;0;0" keyTimes="0;0.02;{DRAW:.2f};{DRAW+0.02:.2f};1"/><animateMotion dur="14s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;{DRAW:.2f};1" path="{_full}"/></circle>'
 
 # --- tiny callouts at the highs and lows ---
 _ext=[]
@@ -200,7 +200,7 @@ for i,kind,_m in sorted(_hi+_lo):
     t0=DRAW*sum(_L[:i])/_TOT
     dy=-14 if kind=="high" else 20
     col=UP if kind=="high" else DOWN
-    _labels.append(f'<text x="{x:.0f}" y="{y+dy:.0f}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="{col}" opacity="0">{w}<animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.75;.75;0;0" keyTimes="0;{t0:.4f};{min(0.99,t0+0.006):.4f};{min(0.994,t0+0.045):.4f};{min(0.997,t0+0.055):.4f};1"/></text>')
+    _labels.append(f'<text x="{x:.0f}" y="{y+dy:.0f}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="{col}" opacity="0">{w}<animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.75;.75;0;0" keyTimes="0;{t0:.4f};{min(0.99,t0+0.006):.4f};{min(0.994,t0+0.045):.4f};{min(0.997,t0+0.055):.4f};1"/></text>')
 
 CHART=('<line x1="0" y1="476" x2="1500" y2="476" stroke="currentColor" stroke-width="1" opacity=".1"/>' + chr(10)
        + chr(10).join(_bars) + chr(10) + chr(10).join(_segs) + chr(10) + _dot + chr(10) + chr(10).join(_labels))
@@ -224,73 +224,37 @@ REAPER=REAPER.replace("{BEAM0}",BEAM0).replace("{BEAMV}",BEAMV).replace("{BEAMT}
 
 SAM = """
 <g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7150;0.7160;0.7195;0.7205;1"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.2700;0.2710;0.2755;0.2765;1"/>
   <rect x="744" y="202" width="16" height="16" rx="3" fill="currentColor">
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;0 -3;0 -9" keyTimes="0;0.7150;0.7180;1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;0 -3;0 -9" keyTimes="0;0.2700;0.2740;1"/>
   </rect>
 </g>
 <g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.9;0;0" keyTimes="0;0.7160;0.7200;0.7320;1"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.9;0;0" keyTimes="0;0.2710;0.2760;0.2900;1"/>
   <ellipse cx="752" cy="222" rx="20" ry="8" fill="currentColor"/>
 </g>
 <g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.22;0;0" keyTimes="0;0.7180;0.7260;0.7900;1"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.22;0;0" keyTimes="0;0.2740;0.2830;0.3600;1"/>
   <circle cx="740" cy="232" r="14" fill="currentColor">
-    <animate attributeName="r" dur="18s" repeatCount="indefinite" values="4;4;30;30" keyTimes="0;0.7180;0.7900;1"/>
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;-16 22;-16 22" keyTimes="0;0.7180;0.7900;1"/>
+    <animate attributeName="r" dur="14s" repeatCount="indefinite" values="4;4;30;30" keyTimes="0;0.2740;0.3600;1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;-16 22;-16 22" keyTimes="0;0.2740;0.3600;1"/>
   </circle>
   <circle cx="766" cy="232" r="12" fill="currentColor">
-    <animate attributeName="r" dur="18s" repeatCount="indefinite" values="4;4;26;26" keyTimes="0;0.7200;0.7900;1"/>
-    <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0;0 0;18 20;18 20" keyTimes="0;0.7200;0.7900;1"/>
+    <animate attributeName="r" dur="14s" repeatCount="indefinite" values="4;4;26;26" keyTimes="0;0.2760;0.3600;1"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite" values="0 0;0 0;18 20;18 20" keyTimes="0;0.2760;0.3600;1"/>
   </circle>
 </g>
-<path d="M752 200L590 152" stroke="currentColor" stroke-width="2.4" fill="none" opacity="0" stroke-linecap="round" stroke-dasharray="172" stroke-dashoffset="172">
-  <animate attributeName="stroke-dashoffset" dur="18s" repeatCount="indefinite" values="172;172;0;0;-172;-172" keyTimes="0;0.7180;0.7420;0.7500;0.7720;1"/>
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;.34;.34;0;0" keyTimes="0;0.7180;0.7220;0.7500;0.7720;1"/>
+<path d="M752 200L360 150" stroke="currentColor" stroke-width="2.4" fill="none" opacity="0" stroke-linecap="round" stroke-dasharray="396" stroke-dashoffset="396">
+  <animate attributeName="stroke-dashoffset" dur="14s" repeatCount="indefinite" values="396;396;0;0;-396;-396" keyTimes="0;0.2760;0.3180;0.3300;0.3700;1"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;.34;.34;0;0" keyTimes="0;0.2760;0.2800;0.3300;0.3700;1"/>
 </path>
 <g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7175;0.7180;0.7410;0.7420;1"/>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;0.7180;0.7420;1" path="M752 200L590 152"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.2755;0.2760;0.3170;0.3180;1"/>
+  <animateMotion dur="14s" repeatCount="indefinite" calcMode="linear" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;0.2760;0.3180;1" path="M752 200L360 150"/>
   <g fill="currentColor"><rect x="-20" y="-1.3" width="13" height="2.6" rx="1.3" opacity=".45"/><rect x="-8" y="-4" width="16" height="8" rx="4"/><path d="M8 -4L16 0L8 4Z"/><path d="M-8 -4L-14 -9L-11 -4ZM-8 4L-14 9L-11 4Z"/></g>
 </g>"""
 
-F35 = """
-<g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.5770;0.5790;0.6980;0.7020;1"/>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.5790;0.7020;1" path="M1720 150L1050 150C880 150 700 40 430 -180"/>
-  <g>
-    <animateTransform attributeName="transform" type="rotate" dur="18s" repeatCount="indefinite" values="0 0 0;0 0 0;30 0 0;52 0 0;52 0 0" keyTimes="0;0.6350;0.6650;0.6900;1"/>
-    <g transform="scale(-1,1)">
-    <g fill="currentColor" stroke="none">
-      <path d="M-48 -15L-72 -42L-58 -42L-38 -15Z" opacity=".45"/>
-      <path d="M-40 -15L-66 -47L-45 -47L-23 -15Z"/>
-      <path d="M86 -2L64 -9L20 -14L-40 -15L-66 -13L-78 -9L-80 -1L-80 5L-70 11L-24 15L34 13L70 6Z"/>
-      <path d="M30 -14L17 -26L-3 -27L-17 -15Z"/>
-      <path d="M8 8L-36 37L-66 37L-25 8Z"/>
-      <path d="M-52 8L-86 25L-69 26L-44 10Z"/>
-      <path d="M-80 -8L-93 -6L-93 0L-80 0Z"/>
-      <path d="M-80 3L-93 3L-93 9L-80 11Z"/>
-      <path d="M26 8L1 10L-3 16L24 15Z" opacity=".4"/>
-    </g>
-    </g>
-  </g>
-</g>"""
-
-F35_SHOT = """
-<g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6145;0.6150;0.6390;0.6400;1"/>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;0.6150;0.6400;1" path="M1311 150L842 153"/>
-  <g fill="currentColor"><rect x="-20" y="-1.4" width="14" height="2.8" rx="1.4" opacity=".4"/><rect x="-10" y="-2.6" width="20" height="5.2" rx="2.6"/><path d="M10 -2.6L17 0L10 2.6Z"/><path d="M-10 -2.6L-15 -7L-12 -2.6ZM-10 2.6L-15 7L-12 2.6Z"/></g>
-</g>"""
-
-DRONE_C = """
-<g opacity="0">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;1;1" keyTimes="0;0.6990;0.7000;0.9;0.99;1"/>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;0.22;0.40;0.58;0.78;1" keyTimes="0;0.7000;0.7400;0.7900;0.8400;0.9200;1" path="M1650 150 L1380 122 L1150 166 L950 128 L720 158 L430 132 L150 286 L-150 300"/>
-  """+FPV_B_BODY+"""
-</g>"""
-
-STRIKES=strike(590,152,0.7420)+chr(10)+strike(690,252,T1)+chr(10)+strike(880,246,T2)+chr(10)+strike(842,153,0.6400)
+STRIKES=strike(360,150,0.3180)+chr(10)+strike(690,252,T1)+chr(10)+strike(880,246,T2)
 
 svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -301,9 +265,9 @@ svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fil
     .prop   {{ transform-box:fill-box; transform-origin:center; animation: prop .17s linear infinite; }}
     .prop-s {{ transform-box:fill-box; transform-origin:center; animation: prop .19s linear infinite; }}
     .prop-v {{ transform-box:fill-box; transform-origin:center; animation: propv .26s linear infinite; }}
-    .wob  {{ transform-box:fill-box; transform-origin:center; animation: wob 1.5s ease-in-out infinite; }}
-    .wob2 {{ transform-box:fill-box; transform-origin:center; animation: wob 1.15s ease-in-out infinite; }}
-    .bobslow {{ animation: bobslow 4s ease-in-out infinite; }}
+    .wob  {{ transform-box:fill-box; transform-origin:center; animation: wob 1.2s ease-in-out infinite; }}
+    .wob2 {{ transform-box:fill-box; transform-origin:center; animation: wob 0.9s ease-in-out infinite; }}
+    .bobslow {{ animation: bobslow 3.1s ease-in-out infinite; }}
     @media (prefers-reduced-motion: reduce) {{ .prop,.prop-s,.prop-v,.wob,.wob2,.bobslow {{ animation:none; }} }}
     @keyframes wob   {{ 0%,100%{{transform:rotate(-9deg)}} 50%{{transform:rotate(9deg)}} }}
     @keyframes bobslow {{ 0%,100%{{transform:translateY(0)}} 50%{{transform:translateY(-9px)}} }}
@@ -313,7 +277,7 @@ svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fil
 
   <mask id="tittle">
     <rect x="700" y="180" width="80" height="140" fill="#fff"/>
-    <rect x="736" y="194" width="32" height="32" fill="#000" opacity="0"><animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7150;0.7160;0.9550;0.9650;1"/></rect>
+    <rect x="736" y="194" width="32" height="32" fill="#000" opacity="0"><animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.2700;0.2710;0.9550;0.9650;1"/></rect>
   </mask>
 
 </defs>
@@ -321,7 +285,7 @@ svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fil
 
 {CHART}
 
-<text class="word" x="300" y="285">ethan</text><text class="word" x="660" y="285" opacity="1"><animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="1;1;0;0;1;1" keyTimes="0;{T1:.4f};{T1+0.0015:.4f};0.900;0.912;1"/>g</text><text class="word" x="720" y="285" mask="url(#tittle)">i</text><text class="word" x="780" y="285">a</text><text class="word" x="840" y="285" opacity="1"><animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="1;1;0;0;1;1" keyTimes="0;{T2:.4f};{T2+0.0015:.4f};0.900;0.912;1"/>n</text><text class="word" x="900" y="285">naros</text>
+<text class="word" x="300" y="285">ethan</text><text class="word" x="660" y="285" opacity="1"><animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="1;1;0;0;1;1" keyTimes="0;{T1:.4f};{T1+0.0015:.4f};0.900;0.912;1"/>g</text><text class="word" x="720" y="285" mask="url(#tittle)">i</text><text class="word" x="780" y="285">a</text><text class="word" x="840" y="285" opacity="1"><animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="1;1;0;0;1;1" keyTimes="0;{T2:.4f};{T2+0.0015:.4f};0.900;0.912;1"/>n</text><text class="word" x="900" y="285">naros</text>
 
   <g>
 {debris(690,236,T1,[(-34,-26),(30,-32),(-40,18),(36,22),(2,-44),(-52,-6),(48,-4),(14,40)])}
@@ -334,28 +298,25 @@ svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fil
 {missile(830,82,862,146,880,244,0.5445,T2)}
 
 <g>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" path="M-150 62L1650 62"/>
+  <animateMotion dur="14s" repeatCount="indefinite" calcMode="linear" path="M-150 62L1650 62"/>
   {REAPER}
 </g>
 
 <g opacity="1">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.7415;0.7420;1"/>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" keyPoints="{KPA}" keyTimes="{KTA}" path="{PA}"/>
-  <g><animateTransform attributeName="transform" type="rotate" dur="18s" repeatCount="indefinite" values="0 0 0;0 0 0;360 0 0;360 0 0" keyTimes="0;0.395;0.428;1"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.3175;0.3180;1"/>
+  <animateMotion dur="14s" repeatCount="indefinite" calcMode="linear" keyPoints="{KPA}" keyTimes="{KTA}" path="{PA}"/>
+  <g><animateTransform attributeName="transform" type="rotate" dur="14s" repeatCount="indefinite" values="0 0 0;0 0 0;360 0 0;360 0 0" keyTimes="0;0.395;0.428;1"/>
   {FPV_A_BODY}</g>
 </g>
 
 <g opacity="1">
-  <animate attributeName="opacity" dur="18s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.6395;0.6400;1"/>
-  <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear" keyPoints="{KPB}" keyTimes="{KTB}" path="{PB}"/>
-  <g><animateTransform attributeName="transform" type="rotate" dur="18s" repeatCount="indefinite" values="0 0 0;0 0 0;-360 0 0;-360 0 0" keyTimes="0;0.655;0.688;1"/>
+  <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="1;1;1;1" keyTimes="0;0.3;0.6;1"/>
+  <animateMotion dur="14s" repeatCount="indefinite" calcMode="linear" keyPoints="{KPB}" keyTimes="{KTB}" path="{PB}"/>
+  <g><animateTransform attributeName="transform" type="rotate" dur="14s" repeatCount="indefinite" values="0 0 0;0 0 0;-360 0 0;-360 0 0" keyTimes="0;0.655;0.688;1"/>
   {FPV_B_BODY}</g>
 </g>
 
-{F35}
-{F35_SHOT}
 {SAM}
-{DRONE_C}
 
 {STRIKES}
 
