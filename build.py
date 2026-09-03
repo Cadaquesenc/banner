@@ -143,8 +143,8 @@ REAPER='''<g class="bobslow" fill="currentColor" stroke="none">
       <g opacity="1"><rect x="5" y="16" width="19" height="5.5" rx="2.75"/><path d="M24 16L30 18.75L24 21.5Z"/><path d="M5 16L1 12L3.5 16ZM5 21.5L1 25.5L3.5 21.5Z"/>
         <animate attributeName="opacity" dur="14s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.5435;0.5445;1"/></g>
     </g>
-    <g opacity=".12" fill="#ffffff"><animate attributeName="fill" dur="14s" repeatCount="indefinite" values="#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff" keyTimes="0;0.2620;0.2680;0.3250;0.3320;0.5760;0.5800;0.6100;0.6180;1"/><animate attributeName="opacity" dur="14s" repeatCount="indefinite" values=".12;.12;.28;.14;.28;.14;.28;.12;.12;.26;.13;.26;.12;.12" keyTimes="0;0.2620;0.2700;0.2780;0.2860;0.2940;0.3020;0.3320;0.5760;0.5840;0.5920;0.6000;0.6180;1"/><animateTransform attributeName="transform" type="rotate" dur="7s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><path d="M44 13L15 224L73 224Z"/></g>
-    <g opacity=".3" fill="none" stroke="#ffffff" stroke-width="1.6"><animate attributeName="stroke" dur="14s" repeatCount="indefinite" values="#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff;#e0564e;#e0564e;#ffffff;#ffffff" keyTimes="0;0.2620;0.2680;0.3250;0.3320;0.5760;0.5800;0.6100;0.6180;1"/><animateTransform attributeName="transform" type="rotate" dur="7s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><ellipse cx="44" cy="224" rx="29" ry="5.5"/></g>'''
+    <g opacity=".12" fill="#9aa0a6"><animate attributeName="fill" dur="14s" repeatCount="indefinite" values="#9aa0a6;#9aa0a6;#e0564e;#e0564e;#9aa0a6;#9aa0a6;#e0564e;#e0564e;#9aa0a6;#9aa0a6" keyTimes="0;0.2620;0.2680;0.3250;0.3320;0.5760;0.5800;0.6100;0.6180;1"/><animate attributeName="opacity" dur="14s" repeatCount="indefinite" values=".12;.12;.28;.14;.28;.14;.28;.12;.12;.26;.13;.26;.12;.12" keyTimes="0;0.2620;0.2700;0.2780;0.2860;0.2940;0.3020;0.3320;0.5760;0.5840;0.5920;0.6000;0.6180;1"/><animateTransform attributeName="transform" type="rotate" dur="7s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><path d="M44 13L15 224L73 224Z"/></g>
+    <g opacity=".3" fill="none" stroke="#9aa0a6" stroke-width="1.6"><animate attributeName="stroke" dur="14s" repeatCount="indefinite" values="#9aa0a6;#9aa0a6;#e0564e;#e0564e;#9aa0a6;#9aa0a6;#e0564e;#e0564e;#9aa0a6;#9aa0a6" keyTimes="0;0.2620;0.2680;0.3250;0.3320;0.5760;0.5800;0.6100;0.6180;1"/><animateTransform attributeName="transform" type="rotate" dur="7s" repeatCount="indefinite" values="-15 44 13;15 44 13;-15 44 13" calcMode="spline" keyTimes="0;0.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/><ellipse cx="44" cy="224" rx="29" ry="5.5"/></g>'''
 
 def missile(x0,y0,cx_,cy_,x1,y1,t0,t1):
     return f'''<g opacity="0">
@@ -261,6 +261,7 @@ svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fil
   <style>
     {FONT}
     .banner {{ color: hsl(0 0% 100%); }}
+    @media (prefers-color-scheme: light) {{ .banner {{ color: hsl(0 0% 8%); }} }}
     .word {{ font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:800; font-size:100px; fill:currentColor; }}
     .prop   {{ transform-box:fill-box; transform-origin:center; animation: prop .17s linear infinite; }}
     .prop-s {{ transform-box:fill-box; transform-origin:center; animation: prop .19s linear infinite; }}
