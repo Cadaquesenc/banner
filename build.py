@@ -260,8 +260,7 @@ svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fil
 <defs>
   <style>
     {FONT}
-    .banner {{ color: hsl(0 0% 100%); }}
-    @media (prefers-color-scheme: light) {{ .banner {{ color: hsl(0 0% 8%); }} }}
+    .banner {{ color: #777; }}
     .word {{ font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:800; font-size:100px; fill:currentColor; }}
     .prop   {{ transform-box:fill-box; transform-origin:center; animation: prop .17s linear infinite; }}
     .prop-s {{ transform-box:fill-box; transform-origin:center; animation: prop .19s linear infinite; }}
