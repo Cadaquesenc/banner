@@ -256,11 +256,11 @@ SAM = """
 
 STRIKES=strike(360,150,0.3180)+chr(10)+strike(690,252,T1)+chr(10)+strike(880,246,T2)
 
-svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+svg=f'''<svg class="banner" width="1500" height="500" viewBox="0 0 1500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 1.4px rgba(0,0,0,.85)) drop-shadow(0 0 1.4px rgba(0,0,0,.85))">
 <defs>
   <style>
     {FONT}
-    .banner {{ color: #777; }}
+    .banner {{ color: #fff; }}
     .word {{ font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:800; font-size:100px; fill:currentColor; }}
     .prop   {{ transform-box:fill-box; transform-origin:center; animation: prop .17s linear infinite; }}
     .prop-s {{ transform-box:fill-box; transform-origin:center; animation: prop .19s linear infinite; }}
